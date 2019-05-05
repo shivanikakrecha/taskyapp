@@ -5,7 +5,19 @@
 {% block content %}
 	<form method="post">
 		{% csrf_token %}
-    {{ form.as_p }}
+    {% for field in form %}
+
+        <label class="title_style"> {{ field.label_tag }} </label>
+
+        <label class="add_movie_title_lable" style="font-size: None; font-weight: None">{{ field }}
+            
+        </label>
+        <p id="moviefile_txt" class="upload_txt"></p>
+        <p id="moviefile_txt_err" class="upload_txt"></p>
+
+        <div class="clearfix"></div>
+    {% endfor %}
+
     <input type="submit" value="Save">
 </form>
 

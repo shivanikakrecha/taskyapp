@@ -24,7 +24,7 @@
 					<td>{{ project.description }}</td>
 					<td>{{ project.duration }}</td>
 					{% if project.avtar %}
-						<td>{{ project.avtar.url }}</td>
+						<td><img src="{{project.avtar.url}}" style="height: 15%" /></td>
 					{% else %}
 						<td></td>
 					{% endif %}
