@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<table>
+		<tbody>
+			<tr>
+				<th>Project Name</th>
+				<th>Project Desctiption </th>
+				<th>Duration</th>
+				<th>Avtar</th>	
+				<th>Edit</th>
+				<th>Delete</th>			
+			</tr>
+			{% for project in projects %}
+				<tr>
+					<td><a href="{% url 'project-detail'  pk=project.id %}">{{ project.name }}</a></td>
+					<td>{{ project.description }}</td>
+					<td>{{ project.duration }}</td>
+					{% if project.avtar %}
+						<td>{{ project.avtar.url }}</td>
+					{% else %}
+						<td></td>
+					{% endif %}
+					<td><a href="{% url 'project-edit'  pk=project.id %}">edit</a></td>
+
+					<td><a href="{% url 'project-delete'  pk=project.id %}">delete</a></td>
+
+				</tr>			
+			{% endfor %}
+			
+		</tbody>
+
+	</table>
+	
+
+{% endblock content %}

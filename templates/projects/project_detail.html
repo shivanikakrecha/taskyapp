@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<table>
+		<tbody>
+			<tr>
+				<th>Task Name</th>
+				<th>Task Desctiption </th>
+				<th>Start Date</th>
+				<th>End Date</th>	
+				<th>Edit</th>
+				<th>Delete</th>			
+			</tr>
+			{% for task in tasks %}
+				<tr>
+					<td><a href=''>{{ task.name }}</a></td>
+					<td>{{ task.description }}</td>
+					<td>{{ task.start_date }}</td>
+					<td>{{ task.end_date }}</td>
+					<td><a href="">edit</a></td>
+
+					<td><a href="">delete</a></td>
+
+				</tr>			
+			{% endfor %}
+			
+		</tbody>
+
+	</table>
+	
+
+{% endblock content %}
