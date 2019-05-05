@@ -25,7 +25,7 @@ SECRET_KEY = 'bgsn(_e5o_m3p%-xw=h6w^qan(7e0waguamj5ntmpn$x!w+i8s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
