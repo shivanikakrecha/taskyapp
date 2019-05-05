@@ -4,6 +4,9 @@
 
 {% block content %}
 
+	<div>
+		<a href="{% url 'task-create' project.id %}"><button>Create Task</button></a>
+	</div>
 	<table>
 		<tbody>
 			<tr>
@@ -16,13 +19,12 @@
 			</tr>
 			{% for task in tasks %}
 				<tr>
-					<td><a href=''>{{ task.name }}</a></td>
+					<td><a href="{% url 'task-detail' project.id task.id %}">{{ task.name }}</a></td>
 					<td>{{ task.description }}</td>
 					<td>{{ task.start_date }}</td>
 					<td>{{ task.end_date }}</td>
-					<td><a href="">edit</a></td>
-
-					<td><a href="">delete</a></td>
+					<td><a href="{% url 'task-edit' project.id task.id %}">edit</a></td>
+					<td><a href="{% url 'task-delete' project.id task.id %}">delete</a></td>
 
 				</tr>			
 			{% endfor %}

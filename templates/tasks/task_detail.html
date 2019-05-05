@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+	<div>
+		
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<th>Task Name</th>
+				<th>Task Desctiption </th>
+				<th>Start Date</th>
+				<th>End Date</th>	
+				<th>Edit</th>
+				<th>Delete</th>			
+			</tr>
+				<tr>
+					<td><a href="">{{ current_task.name }}</a></td>
+					<td>{{ current_task.description }}</td>
+					<td>{{ current_task.start_date }}</td>
+					<td>{{ current_task.end_date }}</td>
+
+
+				</tr>			
+			
+		</tbody>
+
+	</table>
+	
+
+{% endblock content %}
