@@ -17,43 +17,73 @@ from tasks.models import Task
 # Create your views here.
 
 class ProjectListView(ListView):
+	"""
+	This view is created for display project list from Project midel all objects. 
+	"""
 	model = Project
 	context_object_name = 'projects'
 	template_name = 'projects/project_list.html'
 
 class ProjectDetailView(DetailView):
+	"""
+	Project detail view will display all the task list into each project.
+	ex. Project1 have 5 tasks, according to this it will show something in 
+	url like ( project/5/) 
+	"""
 	model = Task
 	template_name = "projects/project_detail.html"
 
 	def get_object(self):
+		"""
+		This method will fetch current project object according to url. 
+		"""
 		project = get_object_or_404(Project, pk=self.kwargs['pk'])
 		print(self.model.objects.filter(pk=self.kwargs['pk']))
 		return project
 
 	def get_context_data(self, **kwargs):
+		"""
+		This method is use for context data which is used by its template 
+		"projects/project_detail.html"
+		"""
 		context = super(ProjectDetailView, self).get_context_data(**kwargs)
 		context['tasks'] = Task.objects.filter(project__id=self.kwargs['pk'])
 		context['project'] = self.get_object()
 		return context
 
 class ProjectCreateView(CreateView):
+	"""
+	Project createview will create new object of Project model. Projectfrom will
+	managed all validations by it self. 
+	"""
 	model = Project	
 	form_class = ProjectForm
 	template_name = 'projects/project_create.html'
 	success_url = "/"
 
 class ProjectEditView(UpdateView):
+	"""
+	This method is using for update particular object. object is fetching by url
+	 pk parameter from it self. 
+	"""
   model = Project
   fields = ('__all__')
   template_name = 'projects/project_edit.html'
   context_object_name = 'project' 
 
   def form_valid(self, form):
+  		"""
+  		This method is for object save.
+  		"""
       post = form.save(commit=False)
       post.save()
       return redirect('project-list')
 
 class ProjectDeleteView(DeleteView):
+	"""
+	Project delete view will delete the selected object. It will fetch deleted object 
+	id from url it self. 
+	"""
 	model = Project
 	success_url = reverse_lazy('project-list')
 

@@ -17,14 +17,28 @@ from projects.models import Project
 # Create your views here.
 
 class TaskCreateView(CreateView):
+	"""
+	Task create view will create new object in task model. Task form will validate 
+	validations of each field by self.If some whorn input will get by widgets than 
+	form will raise errors with particuler field.
+	"""
 	model = Task	
 	form_class = TaskForm
 	template_name = 'tasks/task_create.html' 
 
 	def get_success_url(self, **kwargs):
+		"""
+		This method will redirect after saving an object. 
+		ex. ('project/4'). Here self.object.project.id will be tagged foreignkey
+		for created object.
+		"""
 		return reverse("project-detail", kwargs={'pk': self.object.project.id })
 
 class TaskEditView(UpdateView):
+	"""
+	Task edit view is developed for update task of particuler project.
+	This view will fetch by url orderd in ('project/5/task-edit/6')
+	"""
   model = Task
   fields = ('__all__')
   template_name = 'tasks/task_edit.html'
@@ -36,15 +50,25 @@ class TaskEditView(UpdateView):
       return redirect('project-detail', pk=self.object.project.id)	
 
 class TaskDetailView(DetailView):
+	"""
+	Task detail view is  developed for project view page. 
+	This view will fetch by url order in ('project/2/task/4')
+	"""
 	model = Task
 	template_name = "tasks/task_detail.html"
 
 	def get_context_data(self, **kwargs):
+		"""
+		This method will return the current task object.
+		"""
 		context = super().get_context_data(**kwargs)
 		context['current_task'] = self.object
 		return context
 
 class TaskDeleteView(DeleteView):
+	"""
+	This method will delete selected object of task.
+	"""
 	model = Task
 	
 	def get_success_url(self, **kwargs):
