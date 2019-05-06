@@ -35,10 +35,6 @@ class TaskCreateView(CreateView):
 		return reverse("project-detail", kwargs={'pk': self.object.project.id })
 
 class TaskEditView(UpdateView):
-	"""
-	Task edit view is developed for update task of particuler project.
-	This view will fetch by url orderd in ('project/5/task-edit/6')
-	"""
   model = Task
   fields = ('__all__')
   template_name = 'tasks/task_edit.html'

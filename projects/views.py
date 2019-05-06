@@ -62,19 +62,12 @@ class ProjectCreateView(CreateView):
 	success_url = "/"
 
 class ProjectEditView(UpdateView):
-	"""
-	This method is using for update particular object. object is fetching by url
-	 pk parameter from it self. 
-	"""
   model = Project
   fields = ('__all__')
   template_name = 'projects/project_edit.html'
   context_object_name = 'project' 
 
   def form_valid(self, form):
-  		"""
-  		This method is for object save.
-  		"""
       post = form.save(commit=False)
       post.save()
       return redirect('project-list')
@@ -82,7 +75,7 @@ class ProjectEditView(UpdateView):
 class ProjectDeleteView(DeleteView):
 	"""
 	Project delete view will delete the selected object. It will fetch deleted object 
-	id from url it self. 
+	id from url it self. 	
 	"""
 	model = Project
 	success_url = reverse_lazy('project-list')
