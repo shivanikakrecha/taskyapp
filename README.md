@@ -1,5 +1,7 @@
 # taskyapp
 
+This app have basic curd operation using generic views. Tasky app have different kinds of url mapping. also implement Django rest framework for apis. For api documentation taky app using rest framework swagger. 
+
 This is app for curd operation and nested url ex. ('/project/5/task/2')
 https://taskyappdemo.herokuapp.com/
 
