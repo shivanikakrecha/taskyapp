@@ -1,10 +1,14 @@
-from django.urls import path
-from .views import schema_view, ProjectViewset
-from rest_framework.routers import DefaultRouter
-router = DefaultRouter()
-router.register(r'projects', ProjectViewset, basename='project')
+from django.urls import path, include
+from rest_framework import routers
+from apis.views import schema_view, ProjectViewset, TaskViewset
+
+router = routers.DefaultRouter()
+router.register('Projects', ProjectViewset)
+router.register('Task', TaskViewset)
 
 urlpatterns = [
-    path('apis/v1', schema_view),
-    path('apis/v1', ProjectViewset, name="project-list-api")
+    path('', schema_view),
+    path('api-path/', include('rest_framework.urls')),
 ]
+
+urlpatterns += router.urls

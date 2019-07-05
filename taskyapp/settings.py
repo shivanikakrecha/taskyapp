@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'projects',
     'tasks',
     'apis',
-    'rest_framework_swagger'
+    'rest_framework',
+    'rest_framework_swagger',
 
 ]
 
@@ -138,5 +139,7 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+# This setting is for swagger UI with session login or logout.
+LOGIN_URL = 'rest_framework:login'
+LOGOUT_URL = 'rest_framework:logout'
 
